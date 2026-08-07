@@ -27,6 +27,13 @@ SBSSimEvent::SBSSimEvent(TTree* tree, Exp_t experiment) {
   //We should probably use an enum or something simple to make this less clunky than doing a string comparison each time we open the file
   //or load the event:
   switch( fExperiment ){
+  case kGEn:
+    Tgen = new gen_tree_digitized(tree);
+    if(Tgen ==0){
+      std::cout<<" SBSSimEvent::SBSSimEvent(): Digitized tree Tgen can't be found! Stopping the program! " << std::endl;
+      exit(-1);
+    }
+    break;
   case kGEnRP://"genrp":
     //do nothing for now; eventually we will allocate the genrp_tree and store the pointer in the data member of this class:
     Tgmn = new gmn_tree_digitized(tree);
@@ -36,7 +43,6 @@ SBSSimEvent::SBSSimEvent(TTree* tree, Exp_t experiment) {
       std::cout << " SBSSimEvent::SBSSimEvent(): Digitized tree Tgmn / Tgenrp can't be found! Stopping the program! " << std::endl;
       exit(-1);
     }
-    
     break;
   case kGEp://"gep":
     Tgep = new gep_tree_digitized(tree);
@@ -111,6 +117,9 @@ Int_t SBSSimEvent::GetEntry( Long64_t entry )
   int ret=-1;
   //switch is not actually capable of taking strings... use a "enum"
   switch( fExperiment ){
+  case kGEn:
+    ret = Tgen->GetEntry(entry);
+    break;
   case kGEnRP://"genrp":
     //do nothing for now; eventually we will invoke the "GetEntry" methods of the various classes:
     ret = Tgmn->GetEntry(entry);

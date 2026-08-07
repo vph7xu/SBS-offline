@@ -79,6 +79,7 @@ SBSSimFile::SBSSimFile(const char* filename, const char *experiment, const char*
   // fValidExperiments.insert("gep");
   // fValidExperiments.insert("sidis");
   
+  fValidExperiments.insert(kGEn);
   fValidExperiments.insert(kGMN);
   fValidExperiments.insert(kGEnRP);
   fValidExperiments.insert(kGEp);
@@ -210,7 +211,11 @@ void SBSSimFile::GetExperiment(const char *experiment)
 {
   if(fVerbose>1)cout << "using experiment configuration: " << experiment << endl;
   
-  if(strcmp(experiment,"gmn")==0 || strcmp(experiment,"gen")==0){
+  if(strcmp(experiment,"gen")==0){
+    fExperiment = kGEn;
+  }
+  
+  if(strcmp(experiment,"gmn")==0 /*|| strcmp(experiment,"gen")==0*/){
     //(experiment=="gmn" || experiment=="gen")//{
     fExperiment = kGMN;
   }

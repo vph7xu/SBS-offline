@@ -1561,8 +1561,8 @@ Int_t   SBSGEMModule::Decode( const THaEvData& evdata ){
 	}
       }
     } else if( !fIsMC ){
-      std::cout << "Warning in SBSGEMModule::Decode for module " << GetName()
-		<< ": CM flags missing!" << std::endl;
+      //std::cout << "Warning in SBSGEMModule::Decode for module " << GetName()
+	//	<< ": CM flags missing!" << std::endl;
     }
 
     

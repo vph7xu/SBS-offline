@@ -7,8 +7,9 @@
 #include "gmn_tree_digitized.h"
 #include "gep_tree_digitized.h"
 #include "genrp_tree_digitized.h"
+#include "gen_tree_digitized.h"
 
-enum Exp_t    { kGEp, kGEnRP, kGMN, kSIDIS};
+enum Exp_t    { kGEp, kGEnRP, kGMN, kSIDIS, kGEn};
 
 class TTree;
 
@@ -50,7 +51,7 @@ class SBSSimEvent {
   gep_tree_digitized *Tgep;
   genrp_tree_digitized *Tgenrp;//EPAF: for now, genrp tree is thought as a complement of the GMN tree. 
   // we might keep it this way unless it induces crashes or significant slowdown!
-
+  gen_tree_digitized *Tgen;
   //sidis_tree_digitized *Tsidis;
   //  gen_tree_digitized *Tgen; //This actually seems like it wouldn't require anything different from gmn.
 
